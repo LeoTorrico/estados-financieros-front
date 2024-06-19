@@ -1,35 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
+import Ejemplo1 from './components/Ejemplo1';
+import Ejemplo2 from './components/Ejemplo2';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [showComponent, setShowComponent] = useState('');
+
+  const handleShowComponent = (component) => {
+    setShowComponent(component);
+  };
+
+  const handleHideComponent = () => {
+    setShowComponent('');
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Estados financieros</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+    <div>
+      <h1 className="title">ACEFTOOL</h1>
+      <div className="button-container">
+        <button className="btn btn-primary" onClick={() => handleShowComponent('Ejemplo1')}>
+          estados de resultados gestión 2023
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+        <button className="btn btn-primary" onClick={() => handleShowComponent('Ejemplo2')}>
+          estados de resultados gestión 2024
+        </button>
+        <button className="btn btn-secondary" onClick={handleHideComponent}>
+          Ocultar
+        </button>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      {showComponent === 'Ejemplo1' && <Ejemplo1 />}
+      {showComponent === 'Ejemplo2' && <Ejemplo2 />}
+    </div>
+  );
 }
 
-export default App
+export default App;
