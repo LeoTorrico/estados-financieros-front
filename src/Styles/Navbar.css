@@ -1,0 +1,27 @@
+/* styles/Navbar.css */
+
+.custom-navbar {
+    font-size: 1.5rem; /* Aumenta el tamaño de la fuente de la navbar */
+  }
+  
+  .custom-brand {
+    color: #4286f4; /* Celeste */
+    font-size: 2rem; /* Aumenta el tamaño de la palabra ACEFTOOL */
+    font-weight: bold; /* Hace la palabra ACEFTOOL en negrita */
+    margin-left: 20px; /* Ajusta el margen izquierdo para centrar */
+    margin-right: 20px; /* Ajusta el margen derecho para centrar */
+  }
+  
+  .custom-brand:hover {
+    color: #4286f4; /* Mantiene el color celeste en hover */
+  }
+  
+  .navbar-nav {
+    margin-left: 20px; /* Ajusta el margen izquierdo para centrar */
+    margin-right: 20px; /* Ajusta el margen derecho para centrar */
+  }
+  
+  .navbar-nav .nav-link {
+    margin-left: 1rem; /* Añade espacio entre los enlaces de navegación */
+  }
+  
