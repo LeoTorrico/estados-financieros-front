@@ -1,27 +1,45 @@
 /* styles/Navbar.css */
 
-.custom-navbar {
-    font-size: 1.5rem; /* Aumenta el tamaño de la fuente de la navbar */
+.my-app-custom-navbar {
+  font-size: 1.5rem; /* Aumenta el tamaño de la fuente de la navbar */
+}
+
+.my-app-custom-navbar .custom-brand {
+  color: #4286f4; /* Celeste */
+  font-size: 2.5rem; /* Aumenta el tamaño de la palabra ACEFTOOL */
+  font-weight: bold; /* Hace la palabra ACEFTOOL en negrita */
+  margin-left: 40px; /* Ajusta el margen izquierdo para centrar */
+  margin-right: 20px; /* Ajusta el margen derecho para centrar */
+}
+
+.my-app-custom-navbar .custom-brand:hover {
+  color: #4286f4; /* Mantiene el color celeste en hover */
+}
+
+.my-app-custom-navbar .navbar-nav .nav-link:hover {
+  color: #4286f4; /* Mantiene el color celeste en hover */
+}
+.my-app-custom-navbar .navbar-nav {
+  margin-left: -20px; /* Ajusta el margen izquierdo para centrar */
+  margin-right: 200px; /* Ajusta el margen derecho para centrar */
+}
+
+.my-app-custom-navbar .navbar-nav .nav-link {
+  margin-left: 0.5rem; /* Añade espacio entre los enlaces de navegación */
+}
+
+.my-app-custom-navbar .navbar-nav .dropdown-menu {
+  animation: slide-up 0.3s ease; /* Animación de desplazamiento hacia arriba */
+}
+
+
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
   }
-  
-  .custom-brand {
-    color: #4286f4; /* Celeste */
-    font-size: 2rem; /* Aumenta el tamaño de la palabra ACEFTOOL */
-    font-weight: bold; /* Hace la palabra ACEFTOOL en negrita */
-    margin-left: 20px; /* Ajusta el margen izquierdo para centrar */
-    margin-right: 20px; /* Ajusta el margen derecho para centrar */
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .custom-brand:hover {
-    color: #4286f4; /* Mantiene el color celeste en hover */
-  }
-  
-  .navbar-nav {
-    margin-left: 20px; /* Ajusta el margen izquierdo para centrar */
-    margin-right: 20px; /* Ajusta el margen derecho para centrar */
-  }
-  
-  .navbar-nav .nav-link {
-    margin-left: 1rem; /* Añade espacio entre los enlaces de navegación */
-  }
-  
+}
