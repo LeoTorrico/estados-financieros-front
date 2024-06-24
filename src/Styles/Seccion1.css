@@ -1,0 +1,39 @@
+.seccion1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .seccion1-left {
+    flex: 1;
+    padding-right: 20px;
+    margin-left: 100px;
+  }
+  
+  .seccion1-right {
+    flex: 1;
+  }
+  
+  .seccion1-right img {
+    width: 100%;
+    height: auto;
+  }
+  
+  button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #4286f4;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 30%; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+  }
+  
+  button:hover {
+    transform: scale(1.10); 
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.7); 
+  }
+  
