@@ -8,7 +8,7 @@
   .seccion1-left {
     flex: 1;
     padding-right: 20px;
-    margin-left: 100px;
+    margin-left: 120px;
   }
   
   .seccion1-right {
@@ -20,19 +20,19 @@
     height: auto;
   }
   
-  button {
+  .custom-button {
     margin-top: 10px;
     padding: 10px 20px;
     background-color: #4286f4;
     color: white;
     border: none;
-    border-radius: 20px;
+    border-radius: 30px;
     cursor: pointer;
     width: 30%; 
     transition: transform 0.3s ease, box-shadow 0.3s ease; 
   }
   
-  button:hover {
+  .custom-button:hover {
     transform: scale(1.10); 
     box-shadow: 0 0 10px rgba(0, 123, 255, 0.7); 
   }
