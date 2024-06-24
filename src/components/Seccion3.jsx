@@ -15,7 +15,7 @@ function Seccion3() {
           <p>Funcionalidad 1: Detalle de la funcionalidad.</p>
         </div>
         <div className="feature">
-          <i className="bi bi-bar-chart icon-circle"></i>
+          <i className="bi bi-capslock icon-circle"></i>
           <p>Funcionalidad 2: Detalle de la funcionalidad.</p>
         </div>
         <div className="feature">
