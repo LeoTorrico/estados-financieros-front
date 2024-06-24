@@ -1,0 +1,75 @@
+.seccion2 {
+    background-color: #4286f4; /* Color celeste de fondo */
+    padding: 50px 20px;
+    text-align: center;
+  }
+  
+  .seccion2-title {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #fff; /* Color blanco para el texto */
+  }
+  
+  .seccion2-description {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+    color: #fff; /* Color blanco para el texto */
+  }
+  
+  .cards-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 80px; /* Ajusta el espacio entre los cards */
+  }
+  
+  .card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px;
+    max-width: 300px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex-grow: 1;
+    flex-basis: calc(33.333% - 40px); /* Ajusta el tamaño de las tarjetas y el espacio */
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .card-title {
+    font-size: 1.5em;
+    margin: 15px 0;
+  }
+  
+  .card-description {
+    font-size: 1em;
+    margin-bottom: 15px;
+  }
+  
+  .card-button {
+    padding: 10px 20px;
+    background-color: #4286f4;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
+  }
+  
