@@ -1,5 +1,6 @@
 import React from 'react';
 import '../Styles/Navbar.css'; // Actualiza la ruta del archivo CSS
+import { Link } from 'react-router-dom';
 function Navbar() {
   return (
     <div>
@@ -12,10 +13,10 @@ function Navbar() {
           <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link active " aria-current="page" href="#">Inicio</a>
+                <Link className="nav-link active " aria-current="page" Link to="/">Inicio</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">Vertical</a>
+                <Link className="nav-link active" aria-current="page" href="#" Link to="/empresas">Empresas</Link>
               </li>
               <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="#">Horizontal</a>

@@ -30,7 +30,7 @@ function UploadExcel() {
     }
 
     try {
-      const response = await axios.post('http://localhost:4000/api/upload', formData, {
+      const response = await axios.post('https://backend-tss.vercel.app/api/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
