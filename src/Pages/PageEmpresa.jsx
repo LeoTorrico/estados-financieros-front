@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Navbar from '../components/Navbar'
+import Navbar from '../components/Navbar';
+import UploadExcel from '../components/UploadExcel.jsx';
 import { useParams } from 'react-router-dom';
 
 function PageEmpresa() {
@@ -9,9 +10,10 @@ function PageEmpresa() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`https://backend-tss.vercel.app/api/empresas/${cod_empresa}`)
+    axios.get(`https://backend-tss.vercel.app/api/empresa?codigoEmpresa=${cod_empresa}`)
       .then(response => {
-        setEmpresa(response.data);
+        console.log('Datos recibidos:', response.data[0]);
+        setEmpresa(response.data[0]);
         setIsLoading(false);
       })
       .catch(error => {
@@ -19,6 +21,8 @@ function PageEmpresa() {
         setIsLoading(false);
       });
   }, [cod_empresa]);
+  
+  
 
   if (isLoading) {
     return <div className="spinner"></div>;
@@ -26,20 +30,24 @@ function PageEmpresa() {
 
   return (
     <div>
-         <Navbar />
-      {empresa ? (
-        <div>
+      <Navbar />
+      {isLoading ? (
+        <div className="spinner"></div>
+      ) : empresa ? (
+        <div className="title-container">
           <h1>{empresa.nombre_empresa}</h1>
-          {/* Aquí puedes agregar más detalles sobre la empresa */}
+          <div className="divider"></div>
         </div>
       ) : (
         <div className="title-container">
-        <h1 >Empresa no encontrada</h1>
-        <div className="divider"></div>
+          <h1>Empresa no encontrada</h1>
+          <div className="divider"></div>
         </div>
       )}
+        <UploadExcel/>
     </div>
   );
+  
 }
 
 export default PageEmpresa;
