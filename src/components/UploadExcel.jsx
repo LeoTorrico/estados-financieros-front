@@ -1,11 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../Styles/UploadExcel.css'; 
+import '../Styles/UploadExcel.css';
 
 function UploadExcel() {
   const [codigoEmpresa, setCodigoEmpresa] = useState('');
   const [tipoEstado, setTipoEstado] = useState('');
   const [file, setFile] = useState(null);
+  const [empresas, setEmpresas] = useState([]);
+ 
+
+  useEffect(() => {
+    axios.get('https://backend-tss.vercel.app/api/empresas')
+      .then(response => {
+        setEmpresas(response.data);
+      })
+      .catch(error => {
+        console.error('Error al obtener las empresas:', error);
+      });
+  }, []);
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -22,12 +34,7 @@ function UploadExcel() {
     const formData = new FormData();
     formData.append('codigoEmpresa', codigoEmpresa);
     formData.append('tipoEstado', tipoEstado);
-    formData.append('file', file); // Cambiado a 'file'
-
-    // Imprimir FormData en la consola
-    for (let [key, value] of formData.entries()) {
-      console.log(`${key}:`, value);
-    }
+    formData.append('file', file);
 
     try {
       const response = await axios.post('https://backend-tss.vercel.app/api/upload', formData, {
@@ -44,45 +51,56 @@ function UploadExcel() {
   };
 
   return (
-    <div className="upload-excel-card">
-      <form onSubmit={handleSubmit} className="upload-excel-form">
-        <div className="card">
-          <h3>Registrar Empresa</h3>
-          <div className="form-group">
-            <label htmlFor="codigoEmpresa">Código de Empresa:</label>
-            <input
-              type="text"
-              id="codigoEmpresa"
-              value={codigoEmpresa}
-              onChange={(e) => setCodigoEmpresa(e.target.value)}
-              required
-            />
+    <div className="upload-excel-grid-container">
+      <div className="upload-excel-card">
+        <form onSubmit={handleSubmit} className="upload-excel-form">
+          <div className="upload-excel-card-inner">
+            <h3>Registrar Empresa</h3>
+            <div className="form-group">
+              <label htmlFor="codigoEmpresa">Código de Empresa:</label>
+              <input
+                type="text"
+                id="codigoEmpresa"
+                value={codigoEmpresa}
+                onChange={(e) => setCodigoEmpresa(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="tipoEstado">Tipo de Estado:</label>
+              <input
+                type="text"
+                id="tipoEstado"
+                value={tipoEstado}
+                onChange={(e) => setTipoEstado(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="file">Archivo Excel:</label>
+              <input
+                type="file"
+                id="file"
+                accept=".xlsx, .xls"
+                onChange={handleFileChange}
+                required
+              />
+            </div>
+            <button type="submit" className="register-button">
+              <span className="plus-icon">+</span> Registrar Empresa
+            </button>
           </div>
-          <div className="form-group">
-            <label htmlFor="tipoEstado">Tipo de Estado:</label>
-            <input
-              type="text"
-              id="tipoEstado"
-              value={tipoEstado}
-              onChange={(e) => setTipoEstado(e.target.value)}
-              required
-            />
+        </form>
+      </div>
+      {empresas.map((empresa) => (
+        <div key={empresa.id} className="upload-excel-empresa-card">
+          <div className="upload-excel-card-inner">
+          <h3 className="card-title">{empresa.nombre_empresa}</h3>
+            <h4>{empresa.nombre}</h4>
+            <button className="view-button">Ver Empresa</button>
           </div>
-          <div className="form-group">
-            <label htmlFor="file">Archivo Excel:</label>
-            <input
-              type="file"
-              id="file"
-              accept=".xlsx, .xls"
-              onChange={handleFileChange}
-              required
-            />
-          </div>
-          <button type="submit" className="register-button">
-            <span className="plus-icon">+</span> Registrar Empresa
-          </button>
         </div>
-      </form>
+      ))}
     </div>
   );
 }
