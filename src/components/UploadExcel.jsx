@@ -92,15 +92,6 @@ function UploadExcel() {
           </div>
         </form>
       </div>
-      {empresas.map((empresa) => (
-        <div key={empresa.id} className="upload-excel-empresa-card">
-          <div className="upload-excel-card-inner">
-          <h3 className="card-title">{empresa.nombre_empresa}</h3>
-            <h4>{empresa.nombre}</h4>
-            <button className="view-button">Ver Empresa</button>
-          </div>
-        </div>
-      ))}
     </div>
   );
 }
