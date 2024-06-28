@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import '../Styles/UploadExcel.css';
 
 function GetEmpresas() {
   const [empresas, setEmpresas] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get('https://backend-tss.vercel.app/api/empresas')
@@ -29,7 +31,12 @@ function GetEmpresas() {
           <div className="upload-excel-card-inner">
             <h3 className="card-title">{empresa.nombre_empresa}</h3>
             <h4>{empresa.nombre}</h4>
-            <button className="view-button">Ver Empresa</button>
+            <button
+              className="view-button"
+              onClick={() => navigate(`/empresa/${empresa.cod_empresa}`)}
+            >
+              Ver Empresa
+            </button>
           </div>
         </div>
       ))}
