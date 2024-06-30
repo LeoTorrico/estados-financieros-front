@@ -64,17 +64,15 @@ function GetEmpresas() {
   };
 
   const handleSubmit = () => {
-    // Aquí podrías enviar la nueva empresa al backend
-    // y luego actualizar la lista de empresas o realizar alguna acción necesaria.
-    console.log('Enviar formulario:', nuevaEmpresa);
-    // Ejemplo de cómo podrías enviar los datos al backend con axios:
-    // axios.post('https://backend-tss.vercel.app/api/empresas', nuevaEmpresa)
-    //   .then(response => {
-    //     console.log('Empresa creada:', response.data);
-    //   })
-    //   .catch(error => {
-    //     console.error('Error al crear la empresa:', error);
-    //   });
+    const { nombre, nro_imagen } = nuevaEmpresa;
+    axios.post(`https://backend-tss.vercel.app/api/empresa?nombreEmpresa=${nombre}&nroImagen=${nro_imagen}`)
+      .then(response => {
+        console.log('Empresa creada:', response.data);
+        window.location.reload();  // Recargar la ventana después de registrar la empresa
+      })
+      .catch(error => {
+        console.error('Error al crear la empresa:', error);
+      });
   };
 
   if (isLoading) {
@@ -85,34 +83,34 @@ function GetEmpresas() {
     <div className="upload-excel-grid-container">
       <div className="upload-excel-empresa-card">
         <div className="upload-excel-card-inner">
-          <h3 className="card-title" style={{marginBottom:5}}>Registrar Nueva Empresa</h3>
+          <h3 className="card-title" style={{ marginBottom: 5 }}>Registrar Nueva Empresa</h3>
           <div id="carouselExample" className="carousel slide" data-bs-ride="false" style={{ width: '100%', maxWidth: '400px' }}>
-                <div className="carousel-inner">
-                    <div className="carousel-item active">
-                    <img src={imgCard1} className="d-block w-100 carousel-image" alt="Card 1" />
-                    </div>
-                    <div className="carousel-item">
-                    <img src={imgCard2} className="d-block w-100 carousel-image" alt="Card 2" />
-                    </div>
-                    <div className="carousel-item">
-                    <img src={imgCard3} className="d-block w-100 carousel-image" alt="Card 3" />
-                    </div>
-                </div>
-                <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span className="visually-hidden">Previous</span>
-                </button>
-                <button className="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span className="visually-hidden">Next</span>
-                </button>
-                </div>
+            <div className="carousel-inner">
+              <div className={`carousel-item ${nuevaEmpresa.nro_imagen === 1 ? 'active' : ''}`}>
+                <img src={imgCard1} className="d-block w-100 carousel-image" alt="Card 1" />
+              </div>
+              <div className={`carousel-item ${nuevaEmpresa.nro_imagen === 2 ? 'active' : ''}`}>
+                <img src={imgCard2} className="d-block w-100 carousel-image" alt="Card 2" />
+              </div>
+              <div className={`carousel-item ${nuevaEmpresa.nro_imagen === 3 ? 'active' : ''}`}>
+                <img src={imgCard3} className="d-block w-100 carousel-image" alt="Card 3" />
+              </div>
+            </div>
+            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev" onClick={handlePrevImage}>
+              <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span className="visually-hidden">Previous</span>
+            </button>
+            <button className="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next" onClick={handleNextImage}>
+              <span className="carousel-control-next-icon" aria-hidden="true"></span>
+              <span className="visually-hidden">Next</span>
+            </button>
+          </div>
           <input
             type="text"
             placeholder="Nombre de la empresa"
             value={nuevaEmpresa.nombre}
             onChange={handleChangeNombre}
-            style={{marginTop:7, marginBottom:7}}
+            style={{ marginTop: 7, marginBottom: 7 }}
           />
           <button className="view-button" onClick={handleSubmit}>
             Registrar Empresa
