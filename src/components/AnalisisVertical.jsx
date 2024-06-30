@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
 import { useTable } from 'react-table';
-import '../Styles/AnalisisVertical.css'; // Crea este archivo para estilos adicionales si es necesario
+import '../Styles/AnalisisVertical.css';
 
-function AnalisisVertical() {
-  const { cod_empresa } = useParams();
+function AnalisisVertical({ codEmpresa }) {
   const [year, setYear] = useState('2019');
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -16,7 +14,7 @@ function AnalisisVertical() {
 
   const handleGenerateAnalysis = () => {
     setLoading(true);
-    axios.get(`https://backend-tss.vercel.app/api/analisis-vertical?codigoEmpresa=${cod_empresa}&tipoEstado=BALANCE%20GENERAL&year=${year}`)
+    axios.get(`https://backend-tss.vercel.app/api/analisis-vertical?codigoEmpresa=${codEmpresa}&tipoEstado=BALANCE%20GENERAL&year=${year}`)
       .then(response => {
         setData(response.data);
         setLoading(false);
@@ -29,26 +27,11 @@ function AnalisisVertical() {
 
   const columns = React.useMemo(
     () => [
-      {
-        Header: 'Año',
-        accessor: year,
-      },
-      {
-        Header: 'Categoría',
-        accessor: 'CATEGORIA',
-      },
-      {
-        Header: 'Cuenta',
-        accessor: 'CUENTA',
-      },
-      {
-        Header: 'Análisis Vertical %',
-        accessor: 'ANALISIS VERTICAL %',
-      },
-      {
-        Header: 'Análisis Vertical Subcuenta %',
-        accessor: 'ANALISIS VERTICAL SUBCUENTA %',
-      },
+      { Header: 'Año', accessor: year },
+      { Header: 'Categoría', accessor: 'CATEGORIA' },
+      { Header: 'Cuenta', accessor: 'CUENTA' },
+      { Header: 'Análisis Vertical %', accessor: 'ANALISIS VERTICAL %' },
+      { Header: 'Análisis Vertical Subcuenta %', accessor: 'ANALISIS VERTICAL SUBCUENTA %' },
     ],
     [year]
   );

@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
-import UploadExcel from '../components/UploadExcel.jsx';
-import AnalisisVertical from '../components/AnalisisVertical.jsx';
+import UploadExcel from '../components/UploadExcel';
+import AnalisisVertical from '../components/AnalisisVertical';
+import AnalisisHorizontal from '../components/AnalisisHorizontal';
+import Tendencias from '../components/Tendencias';
+import Graficas from '../components/Graficas';
+import Ratios from '../components/Ratios';
 import { useParams } from 'react-router-dom';
 import '../Styles/PageEmpresa.css';
 
@@ -10,11 +14,11 @@ function PageEmpresa() {
   const { cod_empresa } = useParams();
   const [empresa, setEmpresa] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [activeAnalysis, setActiveAnalysis] = useState(''); // Estado para manejar el análisis activo
 
   useEffect(() => {
     axios.get(`https://backend-tss.vercel.app/api/empresa?codigoEmpresa=${cod_empresa}`)
       .then(response => {
-        console.log('Datos recibidos:', response.data[0]);
         setEmpresa(response.data[0]);
         setIsLoading(false);
       })
@@ -24,9 +28,22 @@ function PageEmpresa() {
       });
   }, [cod_empresa]);
 
-  if (isLoading) {
-    return <div className="spinner"></div>;
-  }
+  const renderAnalysis = () => {
+    switch (activeAnalysis) {
+      case 'vertical':
+        return <AnalisisVertical codEmpresa={cod_empresa} />;
+      case 'horizontal':
+        return <AnalisisHorizontal codEmpresa={cod_empresa} />;
+      case 'tendencias':
+        return <Tendencias codEmpresa={cod_empresa} />;
+      case 'graficas':
+        return <Graficas codEmpresa={cod_empresa} />;
+      case 'ratios':
+        return <Ratios codEmpresa={cod_empresa} />;
+      default:
+        return <div>Selecciona un análisis para mostrar</div>;
+    }
+  };
 
   return (
     <div>
@@ -44,9 +61,15 @@ function PageEmpresa() {
           <div className="divider"></div>
         </div>
       )}
-      <div className="grid-container">
-        <div className="grid-item"><UploadExcel /></div>
-        <div className="grid-item"><AnalisisVertical codEmpresa={cod_empresa} tipoEstado="BALANCE GENERAL" /></div>
+      <div className="panel">
+        <button onClick={() => setActiveAnalysis('vertical')}>Análisis Vertical</button>
+        <button onClick={() => setActiveAnalysis('horizontal')}>Análisis Horizontal</button>
+        <button onClick={() => setActiveAnalysis('tendencias')}>Tendencias</button>
+        <button onClick={() => setActiveAnalysis('graficas')}>Gráficas</button>
+        <button onClick={() => setActiveAnalysis('ratios')}>Ratios</button>
+      </div>
+      <div className="results-container">
+        {renderAnalysis()}
       </div>
     </div>
   );
