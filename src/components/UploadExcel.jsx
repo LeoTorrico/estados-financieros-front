@@ -33,6 +33,9 @@ function UploadExcel() {
       });
       console.log(response.data);
       alert('Empresa registrada con éxito');
+      console.log('codigoEmpresa:', formData.get('codigoEmpresa'));
+      console.log('tipoEstado:', formData.get('tipoEstado'));
+      console.log('file:', formData.get('file'));
     } catch (error) {
       console.error('Error al registrar la empresa:', error);
       alert('Error al registrar la empresa');

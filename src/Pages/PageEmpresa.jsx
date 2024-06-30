@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
 import UploadExcel from '../components/UploadExcel.jsx';
+import AnalisisVertical from '../components/AnalisisVertical.jsx';
 import { useParams } from 'react-router-dom';
+import '../Styles/PageEmpresa.css';
 
 function PageEmpresa() {
   const { cod_empresa } = useParams();
@@ -21,8 +23,6 @@ function PageEmpresa() {
         setIsLoading(false);
       });
   }, [cod_empresa]);
-  
-  
 
   if (isLoading) {
     return <div className="spinner"></div>;
@@ -44,10 +44,12 @@ function PageEmpresa() {
           <div className="divider"></div>
         </div>
       )}
-        <UploadExcel/>
+      <div className="grid-container">
+        <div className="grid-item"><UploadExcel /></div>
+        <div className="grid-item"><AnalisisVertical codEmpresa={cod_empresa} tipoEstado="BALANCE GENERAL" /></div>
+      </div>
     </div>
   );
-  
 }
 
 export default PageEmpresa;
