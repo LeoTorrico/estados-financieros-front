@@ -9,22 +9,22 @@ function Seccion3() {
         <img src={img2} alt="Descripción de la imagen" />
       </div>
       <div className="seccion3-right">
-        <h2>Lo que hace nuestra página</h2>
+        <h2>Te garantizamos:</h2>
         <div className="feature">
-          <i className="bi bi-bar-chart icon-circle"></i>
-          <p>Funcionalidad 1: Detalle de la funcionalidad.</p>
+          <i className="bi bi-graph-up icon-circle"></i>
+          <p>Funcionalidad 1: Análisis detallado de datos financieros.</p>
         </div>
         <div className="feature">
-          <i className="bi bi-capslock icon-circle"></i>
-          <p>Funcionalidad 2: Detalle de la funcionalidad.</p>
+          <i className="bi bi-shield-check icon-circle"></i>
+          <p>Funcionalidad 2: Seguridad y protección de la información.</p>
         </div>
         <div className="feature">
-          <i className="bi bi-bar-chart icon-circle"></i>
-          <p>Funcionalidad 3: Detalle de la funcionalidad.</p>
+          <i className="bi bi-lightbulb icon-circle"></i>
+          <p>Funcionalidad 3: Ideas y recomendaciones basadas en datos.</p>
         </div>
         <div className="feature">
-          <i className="bi bi-bar-chart icon-circle"></i>
-          <p>Funcionalidad 4: Detalle de la funcionalidad.</p>
+          <i className="bi bi-speedometer2 icon-circle"></i>
+          <p>Funcionalidad 4: Rendimiento y eficiencia optimizada.</p>
         </div>
       </div>
     </div>
