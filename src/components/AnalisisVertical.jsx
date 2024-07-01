@@ -1,7 +1,27 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useTable } from 'react-table';
+import { Bar } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
 import '../Styles/AnalisisVertical.css';
+
+// Registrar los componentes de Chart.js
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 function AnalisisVertical({ codEmpresa }) {
   const [year, setYear] = useState('2019');
@@ -37,6 +57,23 @@ function AnalisisVertical({ codEmpresa }) {
   );
 
   const tableInstance = useTable({ columns, data });
+
+  // Configuración de datos para el gráfico
+  const chartData = {
+    labels: data.map(item => item.CUENTA),
+    datasets: [
+      {
+        label: 'Análisis Vertical %',
+        data: data.map(item => item['ANALISIS VERTICAL %']),
+        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+      },
+      {
+        label: 'Análisis Vertical Subcuenta %',
+        data: data.map(item => item['ANALISIS VERTICAL SUBCUENTA %']),
+        backgroundColor: 'rgba(153, 102, 255, 0.6)',
+      }
+    ]
+  };
 
   return (
     <div className="analisis-vertical-container">
@@ -86,6 +123,10 @@ function AnalisisVertical({ codEmpresa }) {
           </table>
         </div>
       )}
+
+      <div className="chart-container">
+        <Bar data={chartData} />
+      </div>
     </div>
   );
 }
