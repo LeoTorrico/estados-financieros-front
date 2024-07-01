@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
 import UploadExcel from '../components/UploadExcel';
+import Simulacion from '../components/Simulacion';
 import AnalisisVertical from '../components/AnalisisVertical';
 import AnalisisHorizontal from '../components/AnalisisHorizontal';
 import Tendencias from '../components/Tendencias';
@@ -36,9 +37,9 @@ function PageEmpresa() {
         return <AnalisisHorizontal codEmpresa={cod_empresa} />;
       case 'tendencias':
         return <Tendencias codEmpresa={cod_empresa} />;
-      case 'graficas':
-        return <Graficas codEmpresa={cod_empresa} />;
-      case 'ratios':
+      case 'simulacion':
+        return <Simulacion codEmpresa={cod_empresa} />;
+      case 'ratios':  
         return <Ratios codEmpresa={cod_empresa} />;
       default:
         return <div>Selecciona un análisis para mostrar</div>;
@@ -65,11 +66,11 @@ function PageEmpresa() {
         <button onClick={() => setActiveAnalysis('vertical')}>Análisis Vertical</button>
         <button onClick={() => setActiveAnalysis('horizontal')}>Análisis Horizontal</button>
         <button onClick={() => setActiveAnalysis('tendencias')}>Tendencias</button>
-        <button onClick={() => setActiveAnalysis('graficas')}>Gráficas</button>
         <button onClick={() => setActiveAnalysis('ratios')}>Ratios</button>
+        <button onClick={() => setActiveAnalysis('simulacion')}>Proyecciones</button>
       </div>
       <div className="results-container">
-        {renderAnalysis()}
+        {renderAnalysis()}  
       </div>
     </div>
   );
