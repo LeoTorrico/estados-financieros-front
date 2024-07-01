@@ -16,6 +16,7 @@ function PageEmpresa() {
   const [empresa, setEmpresa] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [activeAnalysis, setActiveAnalysis] = useState(''); // Estado para manejar el análisis activo
+  const [showUploadExcel, setShowUploadExcel] = useState(false); // Estado para mostrar/ocultar UploadExcel
 
   useEffect(() => {
     axios.get(`https://backend-tss.vercel.app/api/empresa?codigoEmpresa=${cod_empresa}`)
@@ -39,7 +40,7 @@ function PageEmpresa() {
         return <Tendencias codEmpresa={cod_empresa} />;
       case 'simulacion':
         return <Simulacion codEmpresa={cod_empresa} />;
-      case 'ratios':  
+      case 'ratios':
         return <Ratios codEmpresa={cod_empresa} />;
       default:
         return <div>Selecciona un análisis para mostrar</div>;
@@ -54,6 +55,9 @@ function PageEmpresa() {
       ) : empresa ? (
         <div className="title-container">
           <h1>{empresa.nombre_empresa}</h1>
+          <button onClick={() => setShowUploadExcel(!showUploadExcel)} className="upload-button">
+            {showUploadExcel ? 'Ocultar' : 'Subir Archivos'}
+          </button>
           <div className="divider"></div>
         </div>
       ) : (
@@ -70,7 +74,8 @@ function PageEmpresa() {
         <button onClick={() => setActiveAnalysis('simulacion')}>Proyecciones</button>
       </div>
       <div className="results-container">
-        {renderAnalysis()}  
+        {renderAnalysis()}
+        {showUploadExcel && <UploadExcel />}
       </div>
     </div>
   );
